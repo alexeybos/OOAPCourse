@@ -9,7 +9,7 @@ public abstract class AbstractPowerSet<T> extends AbstractHashTable<T> {
     //public abstract AbstractPowerSet<T> AbstractPowerSet(int sz);
 
     // команды
-    // предусловие: в множестве отсутствует элемент со значением value
+    // предусловие: в таблице имеется свободный слот для value
     // постусловие: в множество добавлен элемент, если он отсутствует
     public abstract void put(T value);
 }
