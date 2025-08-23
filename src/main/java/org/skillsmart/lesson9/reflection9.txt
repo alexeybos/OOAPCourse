@@ -9,7 +9,13 @@
 И я ведь до сих пор не понял, как же мне правильно объявить (и реализовать) АСД, чтобы получить список значений.
 
 Я сделал новый вариант с реализацией (в качестве работы над ошибками), где добавил в HashTable (в АТД и реализацию) метод public List<T> getValues() чтобы иметь возможность получить значения.
-Или же правильнее в реализации АТД HashTable использовать implements Iterable<T>? И никак не трогать при этом сам АТД HashTable.
+Или же правильнее в реализации АТД HashTable использовать HashTable implements Iterable<T>? И никак не трогать при этом сам АТД HashTable.
+АТД
+https://github.com/alexeybos/OOAPCourse/blob/master/src/main/java/org/skillsmart/lesson9_fix/AbstractHashTable.java
+https://github.com/alexeybos/OOAPCourse/blob/master/src/main/java/org/skillsmart/lesson9_fix/AbstractPowerSet.java
+Реализация
+https://github.com/alexeybos/OOAPCourse/blob/master/src/main/java/org/skillsmart/lesson9_fix/HashTable.java
+https://github.com/alexeybos/OOAPCourse/blob/master/src/main/java/org/skillsmart/lesson9_fix/PowerSet.java
 
 Ну и по методу put(). В решении предусмотрел его изменение относительно HashTable, т.к. (исходя из описания в курсе АСД) предполагалось,
 что HashTable не запрещает вставку одинаковых значений (хотя в своей реализации я это предусматривал) и решил прописать это явно в требованиях.
