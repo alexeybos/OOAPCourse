@@ -1,0 +1,7 @@
+Класс для подготовки и рассылки предупреждений МЧС MCDWarnings. Рассылает с помощью метода sendMCDWarnings() предупреждения в SMS, Телеграм, Whatsapp.
+Класс закрыт для модификации.
+Абстрактный класс AbstractMessengerType. Содержит абстрактный метод send(). Открыт для расширения наследованием.
+Классы SMSMessenger, TGMessenger, WhatsappMessenger все extends AbstractMessengerType. Закрыты.
+
+При необходимости добавить новый мессенджер MAX создается новый закрытый класс MaxMessenger extends AbstractMessengerType.
+Имеющиеся, оттестированные и работающие классы MCDWarnings, SMSMessenger, TGMessenger, WhatsappMessenger не меняются.
