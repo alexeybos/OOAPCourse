@@ -1,6 +1,7 @@
 package org.skillsmart.ooap2.lesson07;
 
 //создаем базовый класс
+/*
 public class Animal {
     public String sound() {
         return "sound";
@@ -20,4 +21,4 @@ public class Main {
         Animal myAnimal = new Dog();  // ссылка базового класса (Animal) на объект дочернего класса Dog
         myAnimal.sound();  // динамическое связывание - вызовется метод sound() из Dog
     }
-}
+}*/

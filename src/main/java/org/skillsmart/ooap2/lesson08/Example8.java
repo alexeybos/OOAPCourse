@@ -35,6 +35,7 @@ public class Example8 {
     }
 
 }
+/*
 
 Apple[] apples = {new Apple(), new Apple()};
 Orange[] oranges = {new Orange(), new Orange()};
@@ -46,4 +47,4 @@ processFruits(oranges);
 //контравариантность - можем передать в метод с "? super дочерний класс" список с объектами базового типа,
 //но работать с сущностями можно только после явного приведения типа
 List<Fruit> fruits = Arrays.asList(new Apple(), new Orange());
-addApplesToCollection(fruits);
+addApplesToCollection(fruits);*/
