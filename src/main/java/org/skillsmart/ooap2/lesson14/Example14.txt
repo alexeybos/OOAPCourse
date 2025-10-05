@@ -1,0 +1,80 @@
+class General implements Serializable {
+
+    public <T> T add(T adding) {
+        throw new UnsupportedOperationException(
+                "Not supported. Should be overridden in subclass."
+        );
+    }
+}
+
+public class Vector<T extends General> extends General {
+
+    private List<T> array;
+
+    public Vector() {
+        this.array = new ArrayList<T>();
+    }
+
+    public Vector(List<T> arr) {
+        this.array = arr;
+    }
+
+    public void put(T val) {
+        array.add(val);
+    }
+
+    public List<T> getArray() {
+        return array;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <U> U add(U adding) {
+        if (adding instanceof Vector) {
+            return (U) addVectors((Vector<T>) adding);
+        }
+        return null;
+    }
+
+    public Vector<T> addVectors(Vector<T> adding) {
+        if (this.size() != adding.size()) return null;
+
+        List<T> result = new ArrayList<>();
+        for (int i = 0; i < array.size(); i++) {
+            result.add(this.array.get(i).add(adding.array.get(i)));
+        }
+        return new Vector<>(result);
+    }
+
+    public int size() {
+        return array.size();
+    }
+
+}
+
+public class FirstCl extends General {
+
+    private int value;
+
+    public FirstCl(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public <T> T add(T adding) {
+        if (!(adding instanceof FirstCl term))
+            throw new IllegalArgumentException("Not supported type");
+        return (T) new FirstCl(value + term.value);
+    }
+}
+
+.....
+Vector<FirstCl> vector1 = new Vector<>(List<FirstCl>);
+Vector<Vector<FirstCl>> vectorExt1 = new Vector<>(List<Vector<FirstCl>>);
+Vector<Vector<Vector<FirstCl>>> vectorExtExt1 = new Vector<>(List<Vector<Vector<FirstCl>>>);
+Vector<Vector<Vector<FirstCl>>> vectorExtExt2 = ....
+Vector<Vector<Vector<FirstCl>>> res2 = vectorExtExt1.addVectors(vectorExtExt2);
