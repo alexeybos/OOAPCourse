@@ -3,6 +3,7 @@ package org.skillsmart.ooap2.lesson15;
 public class Example15 {
 
     class Car {
+        //private int carType; //1-gas, 2-Gasoline, 3-Diesel
         //...
         public void refueling() {
             System.out.println("I need fuel");
