@@ -25,7 +25,7 @@ public class Example12 {
             if (target.getClass().isAssignableFrom(source.getClass())) {
                 return (General) source;
             }
-            return new None();
+            return null; //new None();
         }
 
         public int getAssignmentStatus() {

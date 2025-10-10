@@ -36,6 +36,23 @@ public class Example16 {
         public DatabaseConnection createConnection() {
             return new DatabaseConnection();
         }
+
+        @Override
+        public String toString() {
+            return "DatabaseConnection";
+        }
+
+        public <T extends DatabaseConnection> void covariantMethod(List<T> values) {
+            for (T value : values) {
+                System.out.println(value.toString());
+            }
+        }
+
+        public void covariantMethod2(List<? extends DatabaseConnection> values) {
+            for (DatabaseConnection value : values) {
+                System.out.println(value.toString());
+            }
+        }
     }
 
     class OracleConnection extends DatabaseConnection {
@@ -43,12 +60,33 @@ public class Example16 {
         public OracleConnection createConnection() {
             return new OracleConnection();
         }
+
+        @Override
+        public String toString() {
+            return "OracleConnection";
+        }
     }
 
     class PostgresqlConnection extends DatabaseConnection{
         @Override
         public PostgresqlConnection createConnection() {
             return new PostgresqlConnection();
+        }
+
+        @Override
+        public String toString() {
+            return "PostgresqlConnection";
+        }
+    }
+
+    /**
+     * это уже доделал после ознакомления с ответом
+     */
+    class Provider {
+        public <T extends DatabaseConnection> void covariantMethod(List<T> values) {
+            for (T value : values) {
+                System.out.println(value.toString());
+            }
         }
     }
 
@@ -64,8 +102,17 @@ public class Example16 {
         DatabaseConnection newPGConnect2 = newConnect(dcPostgresql);
 
         //ковариантная типизация
-        testConnections(List.of(newOraConnect1, newOraConnect2));
-        testConnections(List.of(newPGConnect1, newPGConnect2));
+        testConnections(List.of(newOraConnect1, newOraConnect2, newPGConnect2));
+        System.out.println("next");
+        testConnections(List.of(newPGConnect1, newPGConnect2, newOraConnect1, newOraConnect2));
+        System.out.println("next");
+        //все что ниже уже доделал после ознакомления с ответом
+        dcOra.covariantMethod(List.of(newPGConnect1, newPGConnect2, newOraConnect1, newOraConnect2));
+        System.out.println("next");
+        dcOra.covariantMethod2(List.of(newPGConnect1, newPGConnect2, newOraConnect1, newOraConnect2));
+        Provider provider = new Provider();
+        System.out.println("next");
+        provider.covariantMethod(List.of(newPGConnect1, newPGConnect2, newOraConnect1, newOraConnect2));
     }
 
     public DatabaseConnection newConnect(DatabaseConnection type) {
@@ -73,6 +120,8 @@ public class Example16 {
     }
 
     public void testConnections(List<? extends DatabaseConnection> connects) {
-        // что-нибудь делаем в цикле
+        for (DatabaseConnection connect : connects) {
+            System.out.println(connect.toString());
+        }
     }
 }

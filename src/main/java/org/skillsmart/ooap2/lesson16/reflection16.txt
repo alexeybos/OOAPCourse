@@ -1,0 +1,16 @@
+Не полностью разобрался с темой - вижу, что продемонстрировал у себя полиморфизм и ковариантность, а не полиморфный и ковариантный вызов.
+Т.е. остановился на полпути и не доделал задачу до конца.
+С учетом приведенного примера доделал (и проверил) для практики свои вызовы с ковариантностью
+
+    class Provider {
+        public <T extends DatabaseConnection> void covariantMethod(List<T> values) {
+            for (T value : values) {
+                System.out.println(value.toString());
+            }
+        }
+    }
+
+...
+  Provider provider = new Provider();
+  System.out.println("next");
+  provider.covariantMethod(List.of(newPGConnect1, newPGConnect2, newOraConnect1, newOraConnect2));

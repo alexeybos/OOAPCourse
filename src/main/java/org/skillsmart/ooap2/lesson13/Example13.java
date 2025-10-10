@@ -18,8 +18,8 @@ public class Example13 {
 
     public class Main {
         public static void main(String[] args) {
-            A obj = new B();
-            obj.doAction(); // Вывод: Действие B
+            //A obj = new B();
+            //obj.doAction(); // Вывод: Действие B
         }
     }
 
@@ -42,11 +42,11 @@ public class Example13 {
 
     public class Main1 {
         public static void main(String[] args) {
-            A1 objA = new A1();
+            //A1 objA = new A1();
             // objA.doInternalAction(); // Ошибка компиляции: метод protected
 
-            B1 objB = new B1();
-            objB.doInternalAction(); // Корректно: вывод "Внутреннее действие B, т.к. теперь публичное"
+            //B1 objB = new B1();
+            //objB.doInternalAction(); // Корректно: вывод "Внутреннее действие B, т.к. теперь публичное"
         }
     }
 
@@ -67,7 +67,7 @@ public class Example13 {
 
     public class Main2 {
         public static void main(String[] args) {
-            B2 objB = new B2();
+            //B2 objB = new B2();
             //objB.doInternalAction(); // Ошибка компиляции: метод protected
         }
     }
