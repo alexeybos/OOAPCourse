@@ -45,4 +45,25 @@ public class Example21 {
             return isStringValid(PHONE_REGEX, phone);
         }
     }
+
+    public class StringValidator2 {
+        private String regexForValidate;
+
+        public StringValidator2(String regex) {
+            this.regexForValidate = regex;
+        }
+
+        public boolean isStringValid(String str) {
+            Pattern pattern = Pattern.compile(regexForValidate);
+            Matcher matcher = pattern.matcher(str);
+            return matcher.matches();
+        }
+    }
+
+    public class EmailValidator2 extends StringValidator2 {
+        private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        public EmailValidator2() {
+            super(EMAIL_REGEX);
+        }
+    }
 }

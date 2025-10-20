@@ -1,0 +1,50 @@
+1. Насколько я могу судить, пример наследования реализаций корректный, только конструкторы не указал. Но приведенный пример в решении глубже - по сути использование имеющейся "чистой" реализации в конкретном прикладном классе.
+2. А вот пример льготного наследования я привел совсем неправильный. По сути у меня скорее получилось наследование с ограничением, а никакое не льготное.
+Если уж попробовать "докрутить" мой пример, то может быть как-то так, хотя все равно нет уверенности в правильности:
+
+public class StringValidator2 {
+        private String regexForValidate;
+
+        public StringValidator2(String regex) {
+            this.regexForValidate = regex;
+        }
+
+        public boolean isStringValid(String str) {
+            Pattern pattern = Pattern.compile(regexForValidate);
+            Matcher matcher = pattern.matcher(str);
+            return matcher.matches();
+        }
+}
+
+public class EmailValidator2 extends StringValidator2 {
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+    public EmailValidator2() {
+        super(EMAIL_REGEX);
+    }
+}
+
+Как дополнительный пример:
+
+class DocumentProcessingResult {
+    private String documentId;
+    private int processingTime;
+    private String status;
+
+    public ProcessingResult(String documentId, int processingTime, String status) {
+        this.documentId = documentId;
+        this.processingTime = processingTime;
+        this.status = status;
+    }
+}
+
+class FailedPdfProcessing extends DocumentProcessingResult {
+    private String pdfVersion;
+    private String validationError;
+
+    public FailedPdfProcessing(String pdfVersion, String validationError,
+                               String documentId, int processingTime, String status) {
+        super(documentId, processingTime, status);
+        this.pdfVersion = pdfVersion;
+        this.validationError = validationError;
+    }
+}
